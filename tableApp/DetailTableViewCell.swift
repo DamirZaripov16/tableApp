@@ -9,7 +9,11 @@ import UIKit
 
 
 class DetailTableViewCell: UITableViewCell {
+    // MARK: - Properties
+
     let digitLabel = UILabel()
+    
+    // MARK: - Private methods
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

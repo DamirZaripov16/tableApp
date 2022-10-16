@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    // MARK: - Properties
     
     var testTableView = UITableView()
     let identifier = "SomeCell"
@@ -18,6 +19,8 @@ class ViewController: UIViewController {
         "RowExample-16", "RowExample-17", "RowExample-18", "RowExample-19", "RowExample-20"
     ]
 
+    // MARK: - Private methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         testTableView = UITableView(frame: view.bounds, style: .plain)
@@ -28,6 +31,7 @@ class ViewController: UIViewController {
     }
 }
 
+    // MARK: - Extensions
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

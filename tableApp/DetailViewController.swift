@@ -8,8 +8,11 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    // MARK: - Properties
     
     var digit: String = ""
+    
+    // MARK: - Private methods
  
     override func viewDidLoad() {
         super.viewDidLoad()
