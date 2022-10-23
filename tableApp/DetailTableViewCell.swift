@@ -7,31 +7,54 @@
 
 import UIKit
 
+protocol DisplaysDetailTableViewCell: UITableViewCell {
+    func configure(with viewModel: RowViewModel)
+}
 
 class DetailTableViewCell: UITableViewCell {
     // MARK: - Properties
 
-    let digitLabel = UILabel()
+    private let label: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
-    // MARK: - Private methods
+    // MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        digitLabel.textColor = .black
-        digitLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(digitLabel)
-        digitLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        digitLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        digitLabel.widthAnchor.constraint(equalToConstant: 100)
-        digitLabel.heightAnchor.constraint(equalToConstant: 25)
-        
+
+        addSubviews()
+        makeConstraints()
     }
-    
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-    func setDigit(digit: String) {
-        digitLabel.text = digit
+
+    // MARK: - Private
+
+    private func addSubviews() {
+        addSubview(label)
+    }
+
+    private func makeConstraints() {
+        NSLayoutConstraint.activate(
+            [
+                label.centerXAnchor.constraint(equalTo: centerXAnchor),
+                label.centerYAnchor.constraint(equalTo: centerYAnchor)
+            ]
+        )
+    }
+}
+
+// MARK: - DisplaysDetailTableViewCell
+
+extension DetailTableViewCell: DisplaysDetailTableViewCell {
+    func configure(with viewModel: RowViewModel) {
+        label.text = viewModel.title
     }
 }

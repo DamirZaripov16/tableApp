@@ -9,23 +9,48 @@ import UIKit
 
 class DetailViewController: UIViewController {
     // MARK: - Properties
-    
-    var digit: String = ""
-    
-    // MARK: - Private methods
- 
+
+    private let titleLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.textColor = .white
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        return titleLabel
+    }()
+
+    // MARK: - Lifecycle
+
+    init(title: String) {
+        super.init(nibName: nil, bundle: nil)
+
+        titleLabel.text = title
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
-        let digitLabel = UILabel()
-        digitLabel.text = digit
-        digitLabel.textColor = .white
-        digitLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(digitLabel)
-        digitLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        digitLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        digitLabel.widthAnchor.constraint(equalToConstant: 100)
-        digitLabel.heightAnchor.constraint(equalToConstant: 25)
 
+        view.backgroundColor = .black
+
+        addSubviews()
+        makeConstraints()
+    }
+
+    // MARK: - Private
+
+    private func addSubviews() {
+        view.addSubview(titleLabel)
+    }
+
+    private func makeConstraints() {
+        NSLayoutConstraint.activate(
+            [
+                titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            ]
+        )
     }
 }
